@@ -4,13 +4,14 @@
 <div class="row">
     <div class="col">
 
-        <form autocomplete="off">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()" autocomplete="off">
             <!-- Nombre -->
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Nombre</label>
                 <div class="col-sm-9">
                     <input type="text"
                            class="form-control"
+                           formControlName="name"
                            placeholder="Nombre del usuario">
                     <span class="form-text text-danger">
                         Debe de ser en formato de nombre y apellido
@@ -24,6 +25,7 @@
                 <div class="col-sm-9">
                     <input type="email"
                            class="form-control"
+                           formControlName="email"
                            placeholder="Email del usuario">
                     <span class="form-text text-danger">
                         mensaje de error del email
@@ -37,6 +39,7 @@
                 <div class="col-sm-9">
                     <input type="text"
                            class="form-control"
+                           formControlName="username"
                            placeholder="Nombre código del usuario">
                     <span class="form-text text-danger">
                          El username no puede ser Strider
@@ -50,6 +53,7 @@
                 <div class="col-sm-9">
                     <input type="password"
                            class="form-control"
+                           formControlName="password"
                            placeholder="Password de su cuenta">
 
                     <span class="form-text text-danger">
@@ -64,6 +68,7 @@
                 <div class="col-sm-9">
                     <input type="password"
                            class="form-control"
+                           formControlName="password2"
                            placeholder="Confirmar la contraseña">
 
                     <span class="form-text text-danger">
@@ -85,23 +90,23 @@
     </div>
 </div>
 
-<h2>Form Valid: </h2>
-<h2>Form Status: </h2>
-<h2>Form Pending: </h2>
-<h2>Form errors</h2>
-<pre>{{ 'formulario' | json }}</pre>
+<h2>Form Valid: {{ myForm.valid }}</h2>
+<h2>Form Status: {{ myForm.status }} </h2>
+<h2>Form Pending: {{ myForm.pending }}</h2>
+<h2>Form errors {{ myForm.errors }}</h2>
+<pre>{{ myForm.value | json }}</pre>
 
 <h5>Nombre</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.controls['name'].value | json }}</pre>
 
 <h5>Email</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.controls['email'].value | json }}</pre>
 
 <h5>Username</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.controls['username'].errors | json }}</pre>
 
 <h5>Password</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.controls['password'].value | json }}</pre>
 
 <h5>Confirmar</h5>
-<pre>{{ 'formulario' | json }}</pre>
+<pre>{{ myForm.value.password2 | json }}</pre> <!-- otra forma de imprimir -->
